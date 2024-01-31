@@ -20,7 +20,7 @@ public class UserRepositoryImpl extends BaseRepositoryImpel<Integer, User> imple
 
     @Override
     public String getColumnName() {
-        return "firstname,lastname,username,password";
+        return "(firstname,lastname,username,password)";
     }
 
     @Override
@@ -38,23 +38,23 @@ public class UserRepositoryImpl extends BaseRepositoryImpel<Integer, User> imple
 
     @Override
     public User mapResultSetToEntity(ResultSet resultSet) throws SQLException {
-        User user = new User();
-        user.setId(resultSet.getInt("id"));
-        user.setFirstName(resultSet.getString("firstname"));
-        user.setLastName(resultSet.getString("lastname"));
-        user.setUsername(resultSet.getString("username"));
-        user.setPassword(resultSet.getString("password"));
-        return user;
+//        User user = new User();
+//        user.setId(resultSet.getInt("id"));
+//        user.setFirstName(resultSet.getString("firstname"));
+//        user.setLastName(resultSet.getString("lastname"));
+//        user.setUsername(resultSet.getString("username"));
+//        user.setPassword(resultSet.getString("password"));
+//        return user;
 
         //second way???
 
-//        User user1 = new User(
-//                resultSet.getInt("id"),
-//                resultSet.getString("firstname"),
-//                resultSet.getString("lastname"),
-//                resultSet.getString("username"),
-//                resultSet.getString("password")
-//        )
+        return new User(
+                resultSet.getInt("id"),
+                resultSet.getString("firstname"),
+                resultSet.getString("lastname"),
+                resultSet.getString("username"),
+                resultSet.getString("password")
+        );
 
     }
 

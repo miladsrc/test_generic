@@ -16,12 +16,12 @@ public abstract class BaseRepositoryImpel<ID extends Serializable, TYPE extends 
     private final Connection connection;
 
     public BaseRepositoryImpel(Connection connection) {
-        this.connection = connnection;
+        this.connection = connection;
     }
 
     @Override
     public void save(TYPE entity) throws SQLException {
-        String sql = "iNSERT INTO" + getTableName() + " " + getColumnName() + "VALUES"+ getCountOfQuestionMarks();
+        String sql = "INSERT INTO " + getTableName() + " " + getColumnName() + " VALUES"+ getCountOfQuestionMarks();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             fillParamForStatement(preparedStatement, entity, false);
             preparedStatement.executeUpdate();
@@ -45,7 +45,7 @@ public abstract class BaseRepositoryImpel<ID extends Serializable, TYPE extends 
     @Override
     public void update(TYPE entity) throws SQLException {
         String sql = "UPDATE " + getTableName() + " SET " + getUpdateQueryParams() + "WHERE ID = " + entity.getId();
-        try (PreparedStatement preparedStatement = connection.sql) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             fillParamForStatement(preparedStatement, entity, true);
             preparedStatement.executeUpdate();
         }
